@@ -21,7 +21,7 @@ describe('Google feature tests', () => {
 
     it('should open google search', async () => {
         await driver.get('https://www.google.com');
-        Console.log("==============>" + await driver.getTitle());
+        Console.log("Tile ===> " + await driver.getTitle());
         await driver.getTitle().then(title => {
             expect(title).toEqual('Google');
         });
@@ -29,6 +29,7 @@ describe('Google feature tests', () => {
 
     it('should open google search and view search results', async () => {
         await driver.get('https://www.google.com');
+        Console.log("Tile ===> " + await driver.getTitle());
         let element = driver.findElement(By.name("q"));
         element.sendKeys("selenium", Key.RETURN);
         await driver.wait(until.titleContains("selenium"), 10000);
