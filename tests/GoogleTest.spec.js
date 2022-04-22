@@ -1,7 +1,7 @@
 const fs = require('fs');
 const {Builder, Browser, By, Key, until} = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
-const Console = require("console");
+const console = require("console");
 
 describe('Google feature tests', () => {
     let driver;
@@ -18,10 +18,9 @@ describe('Google feature tests', () => {
     afterEach(async () => {
         await driver.quit();
     });
-
     it('should open google search', async () => {
         await driver.get('https://www.google.com');
-        Console.log("Title ===> " + await driver.getTitle());
+        console.log("Title ===> " + await driver.getTitle());
         await driver.getTitle().then(title => {
             expect(title).toEqual('Google');
         });
@@ -29,7 +28,7 @@ describe('Google feature tests', () => {
 
     it('should open google search and view search results', async () => {
         await driver.get('https://www.google.com');
-        Console.log("Title ===> " + await driver.getTitle());
+        console.log("Title ===> " + await driver.getTitle());
         let element = driver.findElement(By.name("q"));
         element.sendKeys("selenium", Key.RETURN);
         await driver.wait(until.titleContains("selenium"), 10000);
