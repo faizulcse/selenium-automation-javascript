@@ -1,0 +1,22 @@
+{
+  "name": "selenium-automation-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tests/index.js",
+  "scripts": {
+    "test": "node tests/index.js",
+    "mytest": "node tests/tkk.js",
+    "main": "node tests/main.js",
+    "bs": "node tests/browserstack.js",
+    "jest": "jest tests/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.26.1",
+    "fs": "^0.0.1-security",
+    "jest": "^27.5.1",
+    "selenium-webdriver": "^4.1.1"
+  }
+}
