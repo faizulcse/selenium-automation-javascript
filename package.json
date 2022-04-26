@@ -4,17 +4,19 @@
   "description": "",
   "main": "tests/index.js",
   "scripts": {
-    "test": "node tests/index.js",
-    "mytest": "node tests/tkk.js",
     "main": "node tests/main.js",
-    "bs": "node tests/browserstack.js",
     "jest": "jest tests/"
+  },
+  "jest": {
+    "verbose": true,
+    "globals": {}
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
     "fs": "^0.0.1-security",
     "jest": "^27.5.1",
     "selenium-webdriver": "^4.1.1"

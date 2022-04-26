@@ -1,38 +1,29 @@
-const fs = require('fs');
-const {Builder, Browser, By, Key, until} = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/chrome");
 const console = require("console");
+const {By, Key, until} = require("selenium-webdriver");
+const {setup} = require("../utils/DriverSetup.js");
 
 describe('Google feature tests', () => {
-    let driver;
     beforeEach(async () => {
-        let options = new chrome.Options();
-        options.addArguments(["--headless"]);
-
-        driver = await new Builder()
-            .forBrowser(Browser.CHROME)
-            .setChromeOptions(options)
-            .build();
+        this.driver = await setup.openBrowser();
     });
 
     afterEach(async () => {
-        await driver.quit();
+        await setup.closeBrowser();
     });
+
     it('should open google search', async () => {
-        await driver.get('https://www.google.com');
-        console.log("Title ===> " + await driver.getTitle());
-        await driver.getTitle().then(title => {
+        console.log("Title ===> " + await this.driver.getTitle());
+        await this.driver.getTitle().then(title => {
             expect(title).toEqual('Google');
         });
     });
 
     it('should open google search and view search results', async () => {
-        await driver.get('https://www.google.com');
-        console.log("Title ===> " + await driver.getTitle());
-        let element = driver.findElement(By.name("q"));
+        console.log("Title ===> " + await this.driver.getTitle());
+        let element = await this.driver.findElement(By.name("q"));
         element.sendKeys("selenium", Key.RETURN);
-        await driver.wait(until.titleContains("selenium"), 10000);
-        await driver.getTitle().then(title => {
+        await this.driver.wait(until.titleContains("selenium"), 10000);
+        await this.driver.getTitle().then(title => {
             expect(title).toEqual('selenium - Google Search');
         });
     });
